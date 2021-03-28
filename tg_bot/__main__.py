@@ -32,9 +32,9 @@ You can find the list of available commands with /help.
 
 """
 
-#sleep how many times after each edit in 'enge' 
+
 EDIT_SLEEP = 1
-#edit how many times in 'enge' 
+
 EDIT_TIMES = 32
 
 moon_ani = [
@@ -350,12 +350,12 @@ def imdb_searchdata(bot: Bot, update: Update):
 def kichawe_about_callback(bot: Bot, update: Update):
     query = update.callback_query
     if query.data == "kichawe_":
-        query.message.reply_photo(
-            TECHNO_IMG,
-            parse_mode=ParseMode.HTML,
-            disable_web_page_preview=True)
-
-
+        query.message.reply_text('🌚') 
+    for x in range(EDIT_TIMES):
+        msg.edit_text(moon_ani[x%32])
+        time.sleep(EDIT_SLEEP)
+    msg.edit_text('🌙')
+            
 
 @run_async
 def imdb(bot: Bot, update: Update, args):
