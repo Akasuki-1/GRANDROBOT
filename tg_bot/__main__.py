@@ -145,9 +145,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                                                                        url="t.me/the_noobhacker")],
                                                                                    [InlineKeyboardButton(text="ADD ME",
                                                                        url="t.me/{}?startgroup=true".format(bot.username)),
-                                                                                   InlineKeyboardButton(text="Source Code",
-                                                                       callback_data="menoobs")
-                                                                                 ]]))
+                                                                                   InlineKeyboardButton(text="LBU kiccha", callback_data="kichawe_")]]))
 
     else:
         update.effective_message.reply_text("Yuss, I am Already ONline")
@@ -299,35 +297,36 @@ def imdb_searchdata(bot: Bot, update: Update):
     )
 
 @run_async
-def Menoob_about_callback(bot: Bot, update: Update):
+def kichawe_about_callback(update, context):
     query = update.callback_query
-    if query.data == "menoobs_":
-        query.message.reply_text(
-            text=f"* Hi again!  The name's {dispatcher.bot.first_name}  \n\nAs  You I'm a next generational group management bot developed by @the_noobHacker.* "
-            f"\n\n  Join [Kannada Movies](t.me/kannada_cinema_group) To Keep Yourself Updated About new Kannada Movies..."
-            f"\n\n I have the normal GROUP MANAGING functions like flood control, a warning system etc but I mainly have the advanced and handy Antispam system and the SIBYL banning system which safegaurds and helps your group from spammers."
-            f"\n\nI Can Manage Your Groups Smoothly, With Some Special Features [:)](https://telegra.ph/file/4f2039d807a346f6baf69.jpg)"
-            f"\n\n You Can Know More About Me By Clicking The Below Buttons",
-            parse_mode=ParseMode.MARKDOWN,
+    if query.data == "kichawe_":
+        query.message.reply_phto(
+            TECHNO_IMG,
+            parse_mode=ParseMode.HTML,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [
+                 [
                         InlineKeyboardButton(
-                            text="Help", callback_data="help_back"
-                        )
-                    ],
-                    [InlineKeyboardButton(text="Back", callback_data="menoobs_back")],
+                            text="Group", url="t.me/kannada_cinema_group"
+                        ),
+                        InlineKeyboardButton(
+                            text="Channel", url="t.me/kannada_all_movis"
+                        ),
+                 ],
+                 [
+                    InlineKeyboardButton(text="Go Back", callback_data="kichawe_back")
+                 ]
                 ]
             ),
         )
-    elif query.data == "menoobs_back":
+    elif query.data == "kichawe_back":
         query.message.reply_text(
             PM_START_TEXT,
             reply_markup=InlineKeyboardMarkup(buttons),
             parse_mode=ParseMode.MARKDOWN,
-            timeout=60,
         )
+
 
 
 @run_async
@@ -513,13 +512,14 @@ def main():
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
    
-    about_callback_handler = CallbackQueryHandler(Menoob_about_callback, pattern=r"menoobs_")
-   
+    kichawe_callback_handler = CallbackQueryHandler(kichawe_about_callback, pattern=r"kichawe_")
+
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
-    dispatcher.add_handler(help_handler)
+    dispatcher.add_handler(help_handler)   
+    dispatcher.add_handler(kichawe_callback_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(settings_callback_handler)
@@ -527,7 +527,6 @@ def main():
     dispatcher.add_handler(start_callback_handler)
     dispatcher.add_handler(IMDB_HANDLER)
     dispatcher.add_handler(IMDB_SEARCHDATA_HANDLER)
-    dispatcher.add_handler(about_callback_handler)
     # dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
