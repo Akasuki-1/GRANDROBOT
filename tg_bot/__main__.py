@@ -300,7 +300,7 @@ def imdb_searchdata(bot: Bot, update: Update):
 def kichawe_about_callback(bot: Bot, update: Update):
     query = update.callback_query
     if query.data == "kichawe_":
-        query.message.reply_phto(
+        query.message.reply_photo(
             TECHNO_IMG,
             parse_mode=ParseMode.HTML,
             disable_web_page_preview=True,
