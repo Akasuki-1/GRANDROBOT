@@ -303,29 +303,7 @@ def kichawe_about_callback(bot: Bot, update: Update):
         query.message.reply_photo(
             TECHNO_IMG,
             parse_mode=ParseMode.HTML,
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                 [
-                        InlineKeyboardButton(
-                            text="Group", url="t.me/kannada_cinema_group"
-                        ),
-                        InlineKeyboardButton(
-                            text="Channel", url="t.me/kannada_all_movis"
-                        ),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="kichawe_back")
-                 ]
-                ]
-            ),
-        )
-    elif query.data == "kichawe_back":
-        query.message.reply_text(
-            PM_START_TEXT,
-            reply_markup=InlineKeyboardMarkup(buttons),
-            parse_mode=ParseMode.MARKDOWN,
-        )
+            disable_web_page_preview=True)
 
 
 
