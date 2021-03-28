@@ -32,6 +32,47 @@ You can find the list of available commands with /help.
 
 """
 
+#sleep how many times after each edit in 'enge' 
+EDIT_SLEEP = 1
+#edit how many times in 'enge' 
+EDIT_TIMES = 32
+
+moon_ani = [
+            "🌗",
+            "🌘",    
+            "🌑",
+            "🌒",
+            "🌓",
+            "🌔",
+            "🌕",
+            "🌖",
+            "🌗",
+            "🌘",    
+            "🌑",
+            "🌒",
+            "🌓",
+            "🌔",
+            "🌕",
+            "🌖",
+            "🌗",
+            "🌘",    
+            "🌑",
+            "🌒",
+            "🌓",
+            "🌔",
+            "🌕",
+            "🌖",
+            "🌗",
+            "🌘",    
+            "🌑",
+            "🌒",
+            "🌓",
+            "🌔",
+            "🌕",
+            "🌖"
+ ]
+
+
 HELP_STRINGS = """
 
 Hello! my name *{}*.
@@ -237,6 +278,15 @@ def help_button(bot: Bot, update: Update):
             pass
         else:
             LOGGER.exception("Exception in help buttons. %s", str(query.data))
+
+@run_async
+def enge(bot: Bot, update: Update):
+    msg = update.effective_message.reply_text('🌚') 
+    for x in range(EDIT_TIMES):
+        msg.edit_text(moon_ani[x%32])
+        time.sleep(EDIT_SLEEP)
+    msg.edit_text('🌙')
+
 
 
 @run_async
@@ -481,6 +531,7 @@ def main():
 
     start_callback_handler = CallbackQueryHandler(send_start, pattern=r"bot_start")
     
+    enge_handler = CommandHandler("enge", enge)
 
     help_handler = CommandHandler("help", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_")
@@ -504,6 +555,7 @@ def main():
     dispatcher.add_handler(migrate_handler)
     dispatcher.add_handler(start_callback_handler)
     dispatcher.add_handler(IMDB_HANDLER)
+    dispatcher.add_handler(enge_handler)
     dispatcher.add_handler(IMDB_SEARCHDATA_HANDLER)
     # dispatcher.add_error_handler(error_callback)
 
