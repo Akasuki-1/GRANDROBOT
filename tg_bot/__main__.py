@@ -188,7 +188,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                                                                        url="t.me/the_noobhacker")],
                                                                                    [InlineKeyboardButton(text="ADD ME",
                                                                        url="t.me/{}?startgroup=true".format(bot.username)),
-                                                                                   InlineKeyboardButton(text="LBU kiccha", callback_data="kichawe_")]]))
+                                                                                   InlineKeyboardButton(text="source", callback_data="kichawe_")]]))
 
     else:
         update.effective_message.reply_text("Yuss, I am Already ONline")
@@ -352,7 +352,7 @@ def imdb_searchdata(bot: Bot, update: Update):
 def kichawe_about_callback(bot: Bot, update: Update):
     query = update.callback_query
     if query.data == "kichawe_":
-  msg = query.message.reply_text('🌚') 
+        query.message.reply_text('🌚') 
     for x in range(EDIT_TIMES):
         msg.edit_text(moon_ani[x%32])
         time.sleep(EDIT_SLEEP)
