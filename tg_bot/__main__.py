@@ -352,7 +352,7 @@ def imdb_searchdata(bot: Bot, update: Update):
 def kichawe_about_callback(bot: Bot, update: Update):
     query = update.callback_query
     if query.data == "kichawe_":
-        query.message.reply_text('🌚') 
+  msg = query.message.reply_text('🌚') 
     for x in range(EDIT_TIMES):
         msg.edit_text(moon_ani[x%32])
         time.sleep(EDIT_SLEEP)
