@@ -297,7 +297,7 @@ def imdb_searchdata(bot: Bot, update: Update):
     )
 
 @run_async
-def kichawe_about_callback(update, context):
+def kichawe_about_callback(bot: Bot, update: Update):
     query = update.callback_query
     if query.data == "kichawe_":
         query.message.reply_phto(
