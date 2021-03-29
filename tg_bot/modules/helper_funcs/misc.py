@@ -65,8 +65,9 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
             ]
         )
 
-    pairs = [modules[i * 1 : (i + 1) * 1] for i in range((len(modules) + 1 - 1) // 1)]
-
+    pairs = [modules[i * 1 : (i + 1) * 1] for i in range((len(modules) + 1 - 1) // 1)],
+    pairs = [modules[i * 3 : (i + 1) * 3] for i in range((len(modules) + 3 - 1) // 3)] 
+ 
     round_num = len(modules) / 1
     calc = len(modules) - round(round_num)
     if calc == 1:
